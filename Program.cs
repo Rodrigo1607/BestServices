@@ -21,8 +21,8 @@ builder.Services.AddSwaggerGen(c =>
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
-     new MySqlServerVersion(new Version(6, 0, 2)))) ;
+options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    new MySqlServerVersion(new Version(6, 0, 2)))) ;
 
 //builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql("Teste.db"));
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

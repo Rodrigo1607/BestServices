@@ -14,7 +14,7 @@ public class ClienteController : Controller
         _clienteRepository = clienteRepository;
     }
 
-    [HttpGet]
+    [HttpGet("todos")]
     public async Task<IEnumerable<Cliente>> GetAllClientes()
     {
         return await _clienteRepository.GetAllClientes();
@@ -55,17 +55,23 @@ public class ClienteController : Controller
         return Ok(cliente);
     }
 
-    
+
 
     [HttpPost]
-    public async Task<IActionResult> AddCliente(Cliente cliente)
+    public async Task<IActionResult> Create(Cliente cliente)
     {
         await _clienteRepository.AddCliente(cliente);
         return CreatedAtAction(nameof(GetClienteById), new { id = cliente.Id }, cliente);
     }
 
+    [HttpGet("add")]
+    public IActionResult Create()
+    {
+        return View("/Pages/Cadastro/Create.cshtml");
+    }
+
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateCliente(int id, Cliente cliente)
+    public async Task<IActionResult>Edit(int id, Cliente cliente)
     {
         if (id != cliente.Id)
         {
@@ -77,7 +83,7 @@ public class ClienteController : Controller
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteCliente(int id)
+    public async Task<IActionResult>Delete(int id)
     {
         await _clienteRepository.DeleteCliente(id);
         return NoContent();

@@ -1,13 +1,17 @@
 ﻿// Controllers/ClienteController.cs
 using CadastroCliente.Models;
 using CadastroCliente.Repositories;
+using CadastroCliente.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 [Route("api/[controller]")]
 [ApiController]
 public class ClienteController : Controller
 {
     private readonly IClienteRepository _clienteRepository;
+
+    public Cliente model = new Cliente();
 
     public ClienteController(IClienteRepository clienteRepository)
     {
@@ -56,7 +60,6 @@ public class ClienteController : Controller
     }
 
 
-
     [HttpPost]
     public async Task<IActionResult> Create(Cliente cliente)
     {
@@ -67,7 +70,9 @@ public class ClienteController : Controller
     [HttpGet("add")]
     public IActionResult Create()
     {
-        return View("/Pages/Cadastro/Create.cshtml");
+        //ViewData["Title"] = "Cadastro de Cliente";
+
+        return View("/Pages/Cadastro/Create.cshtml", model);
     }
 
     [HttpPut("{id}")]

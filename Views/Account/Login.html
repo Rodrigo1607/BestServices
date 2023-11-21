@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    @model LoginViewModel
+    <a asp-page=".Cadastro/Index" asp-route-id="@item.Id">Edit</a> |
+    <form asp-action="Login" asp-controller="account" method="post">
+        <input type="email" asp-for="Email" placeholder="Email" required>
+        <input type="password" asp-for="Password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
